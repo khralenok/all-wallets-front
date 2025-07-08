@@ -29,9 +29,12 @@ const drawWalletData = function(walletData){
     markup = `
     <div class="card">
     <h3>${walletData["wallet_name"]}</h3>
-    <a><b>Balance: </b>${walletData["balance"]} ${walletData["currency"]}</a><br>
-    <a><b>User role: </b>${walletData["user_role"]}</a><br>
-    <a><b>Wallet ID: </b>${walletData["wallet_id"]}</a><br>
+    <div class="molecule vertical">
+    <a><b>Balance: </b>${walletData["balance"]} ${walletData["currency"]}</a>
+    <a><b>User role: </b>${walletData["user_role"]}</a>
+    <a><b>Wallet ID: </b>${walletData["wallet_id"]}</a>
+    </div>
+    <div class="molecule"><a class="btn secondary" href="add-transaction.html?wallet_id=${walletData["wallet_id"]}">Add Transaction</a></div>
     </div>
     `;
 
@@ -42,10 +45,12 @@ const getProfile = async function() {
     const token = localStorage.getItem("token");
     const isLoggedIn = !!token;
 
-    if (!isLoggedIn) {
-        console.log("you are not logged in");
-        return
-    }
+    setTimeout(() => {
+        if (!isLoggedIn) { 
+            window.location.href = "index.html"
+        }
+    }, 3000)
+
 
     const profile = await fetchProfileData(token);
 
@@ -54,8 +59,6 @@ const getProfile = async function() {
     profile["wallets"].forEach(function(wallet, _) {
         drawWalletData(wallet);
     })
-    
-    console.log(profile);
 }
 
 document.addEventListener("DOMContentLoaded", getProfile)

@@ -18,6 +18,7 @@
 
 *{
     padding: 0;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -53,6 +54,12 @@ label {
   line-height: 135%;
 }
 
+.logo{
+  font-size: calc(var(--paragraph-font-size) * pow(var(--font-scale-ratio), 3));
+  text-decoration: none;
+  color: inherit;
+}
+
 section {
     width: 100%;
     display: flex;
@@ -60,6 +67,15 @@ section {
     align-items: center;
     justify-content: center;
     padding: var(--spacing-housemates) 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-siblings);
+  background: royalblue;
+  color: white;
 }
 
 .container{
@@ -89,7 +105,8 @@ section {
     flex-direction: column;
     border: 1px solid black;
     border-radius: var(--spacing-siblings);
-    padding: var(--spacing-friends)
+    padding: var(--spacing-friends);
+    gap: var(--spacing-friends);
 }
 
 form{
@@ -118,4 +135,10 @@ input{
   border: 0px;
   border-radius: calc(var(--spacing-siblings) / 2);
   padding: var(--spacing-siblings) calc(var(--spacing-siblings) * 3);
+}
+
+.btn.secondary{
+    background: none;
+    color: royalblue;
+    border: 1px solid royalblue;
 }

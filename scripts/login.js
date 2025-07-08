@@ -12,7 +12,6 @@ const login = function() {
         .then(res => res.json())
         .then(data => {
             localStorage.setItem("token", data.token)
-            console.log("token", data.token)
         })
     }
     
@@ -24,8 +23,9 @@ const login = function() {
 
         getJWT(username,password);
 
-        window.location.href = "profile.html"
-
+        setTimeout(() => {
+            window.location.href = "profile.html"
+        }, 3000)
     }
 
     form.addEventListener("submit", getInput);   
