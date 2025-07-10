@@ -17,6 +17,7 @@
 }
 
 *{
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -26,7 +27,8 @@ h1,
 h2,
 h3,
 label,
-.logo {
+.logo,
+.amount {
   font-weight: 600;
   line-height: 125%;
   letter-spacing: calc(var(--paragraph-font-size) * 0.03);
@@ -40,7 +42,7 @@ h2 {
   font-size: calc(var(--paragraph-font-size) * pow(var(--font-scale-ratio), 2));
 }
 
-h3{
+h3, .amount{
   font-size: calc(var(--paragraph-font-size) * pow(var(--font-scale-ratio), 1));
 }
 
@@ -58,6 +60,13 @@ label {
   font-size: calc(var(--paragraph-font-size) * pow(var(--font-scale-ratio), 3));
   text-decoration: none;
   color: inherit;
+}
+
+.amount.income{
+  color: green;
+}
+.amount.expense{
+  color: orangered;
 }
 
 section {
@@ -84,6 +93,24 @@ header {
     gap: var(--spacing-friends);
     flex-wrap: wrap;
 }
+.container.ac{
+  align-items: center;
+  justify-content: center;
+}
+
+.container.ac > .page-title{
+  text-align: center;
+}
+
+.transactions{
+  width: var(--container-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-friends);
+  list-style: none;
+  padding: 0;
+  
+}
 
 .molecule{
     display: flex;
@@ -100,13 +127,17 @@ header {
 }
 
 .card{
-    width: 26rem;
+    width: calc((var(--container-width) - 2 * var(--spacing-friends))/3);
     display: flex;
     flex-direction: column;
     border: 1px solid black;
     border-radius: var(--spacing-siblings);
     padding: var(--spacing-friends);
     gap: var(--spacing-friends);
+}
+
+.card.f{
+  width: 100%;
 }
 
 form{
@@ -128,6 +159,7 @@ input, select{
 }
 
 .btn{
+  text-align: center;
   font-weight: 600;
   color: white;
   text-decoration: none;

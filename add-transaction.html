@@ -8,7 +8,11 @@
     <script defer src="scripts/add-transaction.js"></script>
 </head>
 <body>
+    <header>
+        <a class="logo" href="profile.html">AllWallets</a>
+    </header>
     <section>
+        <div class="container ac">
             <div class="page-title"><h1>Add transaction</h1></div>
             <form id="new-transaction-form">
                 <div class="molecule">
@@ -25,15 +29,18 @@
                     <label for="category">Choose category:</label>
                     <select name="category" id="category" form="new-transaction-form">
                         <option value="Salary">Salary</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Gifts">Gifts</option>
                         <option value="Food">Food</option>
+                        <option value="Subscriptions">Subscriptions</option>
                         <option value="Clothes">Clothes</option>
                         <option value="Transport">Transport</option>
+                        <option value="Rent">Rent</option>
                     </select>
                 </div>
-
-                </div>
-                <input class="btn" type="submit" value="Create">
+                <input class="btn" type="submit" value="Add Transaction">
             </form>
+        </div>
     </section>
 </body>
 </html>
