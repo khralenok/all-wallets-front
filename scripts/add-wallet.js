@@ -14,7 +14,8 @@ const getNewWalletInput = function(e){
 }
 
 const sentWalletData = async function(walletName, currency) {
-    fetch("http://localhost:8080/new-wallet", {
+    try{
+        const response = await fetch("http://localhost:8080/new-wallet", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -25,12 +26,16 @@ const sentWalletData = async function(walletName, currency) {
             "currency": currency
         })
     })
-    .then(res => res.json())
-    .then(() => {
-        setTimeout(() => {
-                window.location.href = "profile.html"
-        }, 3000)
-    });
+    if (!response.ok){
+        throw new Error(`Server error: ${response.status}`);
+    }
+    const data = await response.json()
+    console.log(data)
+    window.location.href = "profile.html"
+
+    } catch (error) {
+        console.error('Fetch error', error)
+    }
 }
 
 const prepareToCreateWallet = function() {

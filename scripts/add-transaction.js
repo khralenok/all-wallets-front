@@ -1,39 +1,50 @@
 `use strict`
 
 const token = localStorage.getItem("token");
-const form = document.getElementById("new-wallet-form")
+const form = document.getElementById("new-transaction-form")
+
+const urlParams = new URLSearchParams(window.location.search);
+const wallet_id = parseInt(urlParams.get("wallet_id")); 
 
 const getNewTransactionInput = function(e){
     e.preventDefault();
 
     const formData = new FormData(form);
 
-    const wallet_id = formData.get("currency");
-    const amount = formData.get("amount");
-    const category = 
+    const isDeposit = formData.get("is-deposit") === "true";
+    const amount = parseFloat(formData.get("amount"));
+    const category = formData.get("category");
 
-    sentWalletData(walletName, currency)
+    sentTransactionData(wallet_id, amount, category, isDeposit)
 }
 
-const sentWalletData = async function(walletName, currency) {
-    fetch("http://localhost:8080/new-wallet", {
+const sentTransactionData = async function(walletId, amount, category, isDeposit) {
+    try{
+    const url = isDeposit ? "http://localhost:8080/add-income" : "http://localhost:8080/add-expense";
+
+    const response = await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
-        "amount": 20000000,
-        "category": "Salary",
-        "wallet_id": 2
+        "amount": amount,
+        "category": category,
+        "wallet_id": walletId
     })
     })
-    .then(res => res.json())
-    .then(() => {
-        setTimeout(() => {
-                window.location.href = "profile.html"
-        }, 3000)
-    });
+
+    if (!response.ok){
+        throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json()
+    console.log(data)
+    window.location.href = "profile.html"
+    } catch (error) {
+        console.error('Fetch error', error)
+    }
 }
 
 const prepareToCreateTransaction = function() {
@@ -45,7 +56,7 @@ const prepareToCreateTransaction = function() {
         }
     }, 3000)
 
-    form.addEventListener("submit", getNewWalletInput)
+    form.addEventListener("submit", getNewTransactionInput)
 }
 
-document.addEventListener("DOMContentLoaded", prepareToCreateWallet)
+document.addEventListener("DOMContentLoaded", prepareToCreateTransaction)

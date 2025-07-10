@@ -119,7 +119,7 @@ form{
     padding: var(--spacing-friends)
 }
 
-input{
+input, select{
     padding: calc(var(--paragraph-font-size) * 0.8) ;
   font-size: calc(var(--paragraph-font-size) * 0.8);
   line-height: 135%;
