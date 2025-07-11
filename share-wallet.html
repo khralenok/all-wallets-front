@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllWallets - Share Wallet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="scripts/share-wallet.js"></script>
+</head>
+<body>
+    <header>
+        <a class="logo" href="profile.html">AllWallets</a>
+    </header>
+    <section>
+        <div class="container ac">
+            <div class="page-title"><h1>Share wallet</h1></div>
+            <form id="share-wallet-form">
+                <div class="molecule vertical">
+                    <label for="username">Enter username:</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="molecule vertical">
+                    <label for="role">Choose role:</label>
+                    <select name="role" id="role" form="share-wallet-form">
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                        <option value="spectator">Spectator</option>
+                    </select>
+                </div>
+                <input class="btn" type="submit" value="Share Wallet">
+            </form>
+        </div>
+    </section>
+</body>
+</html>

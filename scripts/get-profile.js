@@ -34,7 +34,7 @@ const drawWalletData = function(walletData){
     <a><b>User role: </b>${walletData["user_role"]}</a>
     <a><b>Wallet ID: </b>${walletData["wallet_id"]}</a>
     </div>
-    <div class="molecule vertical"><a class="btn secondary" href="add-transaction.html?wallet_id=${walletData["wallet_id"]}">Add Transaction</a><a class="btn secondary" href="wallet.html">See Details</a></div>
+    <div class="molecule vertical"><a class="btn secondary" href="add-transaction.html?wallet_id=${walletData["wallet_id"]}">Add Transaction</a><a class="btn secondary" href="wallet.html?wallet_id=${walletData["wallet_id"]}">See Details</a></div>
     </div>
     `;
 
