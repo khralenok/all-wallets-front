@@ -56,9 +56,11 @@ const getProfile = async function() {
 
     drawUserData(profile["user"]);
 
-    profile["wallets"].forEach(function(wallet, _) {
-        drawWalletData(wallet);
-    })
+    if (profile["wallets"]){
+        profile["wallets"].forEach(function(wallet, _) {
+            drawWalletData(wallet);
+        })
+    }
 
     const HTMLelement = document.getElementById("wallets")
 
