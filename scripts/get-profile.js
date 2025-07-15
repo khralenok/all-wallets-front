@@ -16,9 +16,9 @@ const fetchProfileData = async function(token) {
 const drawUserData = function(userData) {
     const HTMLelement = document.getElementById("user-data")
     markup = `
-    <a><b>Username: </b>${userData["username"]}</a><br>
-    <a><b>User ID: </b>${userData["id"]}</a><br>
-    <a><b>Balance: </b>${userData["balance"]} ${userData["base_currency"]}</a><br>`;
+        <a class="data"> ID: ${userData["id"]} | ${userData["username"]}</a>
+        <a class="amount">${userData["balance"]} ${userData["base_currency"]}</a>
+    `;
 
     HTMLelement.innerHTML += markup
 }
@@ -28,13 +28,13 @@ const drawWalletData = function(walletData){
 
     markup = `
     <div class="card">
-    <h3>${walletData["wallet_name"]}</h3>
-    <div class="molecule vertical">
-    <a><b>Balance: </b>${walletData["balance"]} ${walletData["currency"]}</a>
-    <a><b>User role: </b>${walletData["user_role"]}</a>
-    <a><b>Wallet ID: </b>${walletData["wallet_id"]}</a>
-    </div>
-    <div class="molecule vertical"><a class="btn secondary" href="add-transaction.html?wallet_id=${walletData["wallet_id"]}">Add Transaction</a><a class="btn secondary" href="wallet.html?wallet_id=${walletData["wallet_id"]}">See Details</a></div>
+        <a class="data">ID: ${walletData["wallet_id"]} | ${walletData["wallet_name"]} | ${walletData["user_role"]}</a>
+        <div class="molecule vertical">
+            <a class="amount">${walletData["balance"]} ${walletData["currency"]}</a>
+        </div>
+            <div class="molecule vertical"><a class="btn" href="add-transaction.html?wallet_id=${walletData["wallet_id"]}">Add Transaction</a>
+            <a class="btn secondary" href="wallet.html?wallet_id=${walletData["wallet_id"]}">See Details</a>
+        </div>
     </div>
     `;
 
@@ -59,6 +59,17 @@ const getProfile = async function() {
     profile["wallets"].forEach(function(wallet, _) {
         drawWalletData(wallet);
     })
+
+    const HTMLelement = document.getElementById("wallets")
+
+    markup = `
+            <div class="card">
+                <div class="icon-wrapper"><span class="add-icon">+</span></div>
+                <a class="btn" href="add-wallet.html">Add wallet</a>
+            </div>
+            `
+
+    HTMLelement.innerHTML += markup
 }
 
 document.addEventListener("DOMContentLoaded", getProfile)

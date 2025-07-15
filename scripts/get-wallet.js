@@ -28,14 +28,12 @@ const drawWalletData = function(walletData){
             <div class="card f">
                 <div class="molecule">
                     <div class="molecule vertical">
-                        <a class="amount income">${walletData["balance"]} ${walletData["currency"]}</a>
-                        <a><b>Wallet ID: </b>${walletData["id"]}</a>
-                        <a><b>LastSnapshot: </b>${formatter.format(lastSnapshot)}</a>
-                        <a><b>Created at: </b>${formatter.format(createdAt)}</a>
+                        <a class="data"><b>ID:</b> ${walletData["id"]} | ${walletData["wallet_name"]} |<b>Last snapshot:</b> ${formatter.format(lastSnapshot)} | <b>Created at:</b> ${formatter.format(createdAt)}</a>
+                        <a class="amount">${walletData["balance"]} ${walletData["currency"]}</a>
                     </div>
                 </div>
                 <div class="molecule">
-                    <a class="btn secondary" href="add-transaction.html?wallet_id=${walletData["id"]}">Add Transaction</a>
+                    <a class="btn" href="add-transaction.html?wallet_id=${walletData["id"]}">Add Transaction</a>
                     <a class="btn secondary" href="share-wallet.html?wallet_id=${walletData["id"]}">Share Wallet</a>
                 </div>
             </div>
@@ -75,12 +73,12 @@ const drawTransactionData = function(trx, currency){
     markup = `
                 <ul class="card f">
                     <a class="amount ${type}">${amount} ${currency}</a>
-                    <div class="molecule">
-                        <a><b>Trx ID: </b>${trx["id"]}</a>
-                        <a><b>Category: </b>${trx["category"]}</a>
-                        <a><b>Created At: </b>${formatter.format(createdAt)}</a>
-                        <a><b>Creator ID: </b>${trx["creator_id"]}</a>
-                    </div>
+                    <a class="data">
+                        <b>Trx ID: </b>${trx["id"]} |
+                        <b>Category: </b>${trx["category"]} | 
+                        <b>Created At: </b>${formatter.format(createdAt)} | 
+                        <b>Creator ID: </b>${trx["creator_id"]}
+                    </a>
                 </ul>
     `;
 
@@ -96,10 +94,9 @@ const getWallet = async function() {
 
     drawWalletData(walletData);
 
-
-    transactions["transactions"].forEach(trx => {
-        drawTransactionData(trx, walletData["currency"]);
-    });
+    for (let i = transactions["transactions"].length - 1; i >= 0; i--){
+        drawTransactionData(transactions["transactions"][i], walletData["currency"]) 
+    }
 }
 
 document.addEventListener("DOMContentLoaded", getWallet)

@@ -1,16 +1,18 @@
 `use strict`
 
-const login = function() {
-    const form = document.getElementById("the-form");
+const signin = function() {
+    const form = document.getElementById("signin-form");
 
-    const getJWT = async function(username, password){
+    const sentNewUserData = async function(username, password, baseCurrency){
         try{
-        const response = await fetch("http://localhost:8080/login", {
+        const response = await fetch("http://localhost:8080/signin", {
             method: "POST", 
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 "username": username,
-                "user_pwd": password})
+                "user_pwd": password,
+                "base_currency": baseCurrency
+            })
         })
 
         if (!response.ok){
@@ -26,26 +28,24 @@ const login = function() {
         }
     }
     
-    const getLoginInput = async function(e){
+    const getSigninInput = function(e){
         e.preventDefault();
         const formData = new FormData(form);
         const username = formData.get("username");
         const password = formData.get("password");
+        const currency = formData.get("currency");
 
-        const success = await getJWT(username,password);
-
-        console.log(success)
+        const success = sentNewUserData(username,password, currency);
 
         if (!success) {
-            console.error('Can\'t login')
-            localStorage.removeItem("token")
+            console.error('Can\'t Sign In')
             return
         }
 
-        window.location.href = "profile.html"
+        window.location.href = "index.html"
     }
 
-    form.addEventListener("submit", getLoginInput);   
+    form.addEventListener("submit", getSigninInput);   
 }
 
-document.addEventListener("DOMContentLoaded", login)
+document.addEventListener("DOMContentLoaded", signin)

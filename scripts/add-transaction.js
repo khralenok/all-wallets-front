@@ -41,7 +41,7 @@ const sentTransactionData = async function(walletId, amount, category, isDeposit
 
     const data = await response.json()
     console.log(data)
-    window.location.href = "profile.html"
+    location.replace(document.referrer)
     } catch (error) {
         console.error('Fetch error', error)
     }

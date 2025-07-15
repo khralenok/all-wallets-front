@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllWallets - Sign In</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="scripts/signin.js"></script>
+</head>
+<body>
+    <section>
+        <div class="container ac">
+            <div class="page-title"><h1>Create AllWallets Account</h1></div>
+            <form id="signin-form">
+                <div class="molecule vertical">
+                    <label for="username">Enter your username:</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="molecule vertical">
+                    <label for="password">Enter your password:</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="molecule vertical">
+                    <label for="currency">Choose your base currency:</label>
+                    <select name="currency" id="currency">
+                        <option value="USD">US Dollar</option>
+                        <option value="KZT">Kazakhstani Tenge</option>
+                        <option value="VND">Vietnamese Dong</option>
+                        <option value="RUB">Russian Ruble</option>
+                        <option value="BTC">Bitcoin</option>
+                        </select>
+                </div>
+                <div class="molecule vertical">
+
+                <div class="molecule vertical">
+                    <input class="btn" type="submit" value="Log In">
+                    <a class="alt-action" href="index.html">I already have an account</a>
+                </div>               
+            </form>
+        </div>
+    </section>
+</body>
+</html>

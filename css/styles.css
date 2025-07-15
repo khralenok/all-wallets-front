@@ -48,12 +48,15 @@ h3, .amount{
 
 a,
 p,
-button,
 li,
 label {
   font-size: var(--paragraph-font-size);
   letter-spacing: calc(var(--paragraph-font-size) * 0.025);
   line-height: 135%;
+}
+
+button, .btn, .data{
+  font-size: var(--base-font-size);
 }
 
 .logo{
@@ -81,7 +84,7 @@ section {
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: var(--spacing-siblings);
   background: royalblue;
   color: white;
@@ -130,6 +133,7 @@ header {
     width: calc((var(--container-width) - 2 * var(--spacing-friends))/3);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border: 1px solid black;
     border-radius: var(--spacing-siblings);
     padding: var(--spacing-friends);
@@ -167,10 +171,45 @@ input, select{
   border: 0px;
   border-radius: calc(var(--spacing-siblings) / 2);
   padding: var(--spacing-siblings) calc(var(--spacing-siblings) * 3);
+  transform: scale(1);
+  transition: transform 500ms;
+}
+
+.btn:hover{
+  transform: scale(1.025);
 }
 
 .btn.secondary{
     background: none;
     color: royalblue;
     border: 1px solid royalblue;
+}
+
+.alt-action{
+  text-align: center;
+}
+
+.icon-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.add-icon{
+  width: 5rem;
+  height: 5rem;
+  border: 4px solid royalblue;
+  color: royalblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  border-radius: 1000px;
+}
+
+@media screen and (max-width:1280px) {
+  :root{
+    --container-width: 60rem;
+  }
+  
 }
